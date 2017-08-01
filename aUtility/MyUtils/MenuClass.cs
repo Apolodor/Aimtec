@@ -28,5 +28,10 @@
         public static Menu EpicMonsters { internal get; set; }
         public static Menu Dragons { internal get; set; }
         public static Menu Monsters { internal get; set; }
+
+        public static Menu RecallTracker { internal get; set; }
+        
     }
 }
+
+

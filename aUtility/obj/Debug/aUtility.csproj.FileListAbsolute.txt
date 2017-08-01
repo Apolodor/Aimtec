@@ -1,0 +1,9 @@
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\aUtility.exe.config
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\aUtility.exe
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\aUtility.pdb
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\Aimtec.dll
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\Aimtec.SDK.dll
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\NLog.dll
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\obj\Debug\aUtility.exe
+C:\Users\Gucci\Desktop\Tec\aUtility\aUtility\obj\Debug\aUtility.pdb

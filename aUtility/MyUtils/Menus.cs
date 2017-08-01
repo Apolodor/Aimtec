@@ -134,10 +134,21 @@
                 }         
                 MenuClass.Menu.Add(MenuClass.SummonerSpells);
 
-          
+                MenuClass.RecallTracker = new Menu("RecallTracker", "Recall Tracker");
+                {
+                    MenuClass.RecallTracker.Add(new MenuBool("recalltracker", "Status"));
+                    MenuClass.RecallTracker.Add(new MenuSlider("xpos", "X Position", 440, 0, 2000));
+                    MenuClass.RecallTracker.Add(new MenuSlider("ypos", "Y Position", 512, 0, 2000));
+                    MenuClass.RecallTracker.Add(new MenuSeperator("separatorrctracker", "Recall Tracker Debugger"));
+                    MenuClass.RecallTracker.Add(new MenuBool("recalltrackerdebug", "Debugger",false));
+                   
+                }
+                MenuClass.Menu.Add(MenuClass.RecallTracker);
+
                 MenuClass.Menu.Add(new MenuSeperator("separator", "Quick Toggles"));
 
-                MenuClass.Menu.Add(new MenuBool("recalltracker", "Recall Tracker"));
+                MenuClass.Menu.Add(new MenuBool("ganktracker", "Gank Tracker"));
+
                 MenuClass.Menu.Add(new MenuBool("wardtracker", "Wards Tracker"));
                 //   MenuClass.Menu.Add(new MenuBool("trinket", "Buy Blue Trinket"));
                 MenuClass.Menu.Add(new MenuBool("lvlupult", "Auto R Lvl Up"));
@@ -147,6 +158,3 @@
         }
     }
 }
-            
-
-        

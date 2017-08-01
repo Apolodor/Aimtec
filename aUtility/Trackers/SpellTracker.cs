@@ -55,6 +55,7 @@
             if (unitSpell.State.HasFlag(SpellState.Unknown))
             {
                 return "?";
+
             }
 
             return SpellSlots[spell].ToString();
@@ -86,31 +87,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

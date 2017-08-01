@@ -1,26 +1,44 @@
 ﻿namespace aUtility
 {
     using System.Collections.Generic;
+    using System.Drawing;
 
     using Aimtec;
-    using System.Drawing;
+    using Aimtec.SDK.Menu.Components;
+
 
     internal class RecallTracker
     {
         private bool _RecallTrackerActive
         {
-            get { return MenuClass.Menu["recalltracker"].Enabled; }
+            get { return MenuClass.RecallTracker["recalltracker"].Enabled; }
         }
 
-        private int startX = 440, startY = 512;
+        private bool _RecallTrackerDebug
+        {
+            get { return MenuClass.RecallTracker["recalltrackerdebug"].Enabled; }
+        }
+
+        private int startX
+        {
+            get { return MenuClass.RecallTracker["xpos"].As<MenuSlider>().Value; }
+        }
+
+        private int startY
+        {
+            get { return MenuClass.RecallTracker["ypos"].As<MenuSlider>().Value; }
+        }
 
         private float barWidth = 400f;
         private float barHeight = 30f;
+
 
         private readonly Color bgColor = Color.Green;
         private readonly Color fgColor = Color.White;
 
         private readonly List<Recall> _recalls = new List<Recall>();
+
+        int barCount = 1;
 
         public RecallTracker()
         {
@@ -61,11 +79,31 @@
                     if (percent < 0) 
                         continue;
 
-                    Render.Line(startX, startY + index * barHeight, startX + (barWidth * percent), startY + index * barHeight, 22f, false, bgColor);
+                    Render.Line(startX, startY + index * barHeight,
+                        startX + (barWidth * percent),
+                        startY + index * barHeight, 22f, false, bgColor);
 
-                    Render.Text(startX + (barWidth / 2f) - 15f, startY + index * barHeight - 5f, fgColor, recall.Caster?.ChampionName ?? "Unknown");
+                    Render.Line((float)startX,
+                        startY + barHeight * (barCount / 2f) - barHeight / 2f,
+                        startX + barWidth,
+                        startY + barHeight * (barCount / 2f) - barHeight / 2f,
+                        barHeight * barCount,
+                        false, Color.FromArgb(150, Color.DarkGreen));
 
-               }
+                    Render.Text(startX + (barWidth / 2f) - 15f,
+                        startY + index * barHeight - 5f,
+                        fgColor, recall.Caster?.ChampionName ?? "Unknown");
+
+                }
+                if (_RecallTrackerDebug)
+                {
+                    Render.Line((float)startX,
+                        startY + barHeight * (barCount / 2f) - barHeight / 2f,
+                        startX + barWidth,
+                        startY + barHeight * (barCount / 2f) - barHeight / 2f,
+                        barHeight * barCount,
+                        false, Color.FromArgb(150, Color.DarkGreen));
+                }
             }
         }
     }
