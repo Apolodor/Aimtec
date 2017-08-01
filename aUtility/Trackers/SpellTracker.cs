@@ -23,7 +23,7 @@
             SpellSlot.Q, SpellSlot.W, SpellSlot.E, SpellSlot.R
         };
 
-        private static readonly SpellSlot[] SummonersSlots =
+        private static readonly SpellSlot[] SummonerSpellSlots =
         {
             SpellSlot.Summoner1, SpellSlot.Summoner2
         };
@@ -37,6 +37,16 @@
         {
 
             return target.IsMe ? 25 : 35;
+        }
+
+        public static int SummonerSpellXAdjustment(Obj_AI_Hero target)
+        {
+            return target.IsMe ? 2 : 10;
+        }
+
+        public static int SummonerSpellYAdjustment(Obj_AI_Hero target)
+        {
+            return target.IsMe ? -24 : -6;
         }
 
         public static string GetUnitSpellCooldown(Obj_AI_Hero unit, int spell)
@@ -61,6 +71,32 @@
             return SpellSlots[spell].ToString();
         }
 
+        public static string GetUnitSummonerSpellCooldown(Obj_AI_Hero unit, int summonerSpell)
+        {
+            var cooldownRemaining = unit.SpellBook.GetSpell(SummonerSpellSlots[summonerSpell]).CooldownEnd - Game.ClockTime;
+            return cooldownRemaining > 0 ? ((int)cooldownRemaining).ToString() : "READY";
+        }
+
+        public static string GetUnitSummonerSpellFixedName(Obj_AI_Hero unit, int summonerSpell)
+        {
+            switch (unit.SpellBook.GetSpell(SummonerSpellSlots[summonerSpell]).Name.ToLower())
+            {
+                case "summonerflash": return "Flash";
+                case "summonerdot": return "Ignite";
+                case "summonerheal": return "Heal";
+                case "summonerteleport": return "Teleport";
+                case "summonerexhaust": return "Exhaust";
+                case "summonerhaste": return "Ghost";
+                case "summonerbarrier": return "Barrier";
+                case "summonerboost": return "Cleanse";
+                case "summonermana": return "Clarity";
+                case "summonerclairvoyance": return "Clairvoyance";
+                case "summonersnowball": return "Mark";
+                default:
+                    return "Smite";
+            }
+        }
+
         public SpellTracker()
         {
             foreach (var unit in
@@ -83,7 +119,23 @@
 
                     Render.Text(xSpellOffset, ySpellOffset, Color.White, spellCooldown);
                 }
+
+                for (var summonerSpell = 0; summonerSpell < SummonerSpellSlots.Length; summonerSpell++)
+                {
+                    var xSummonerSpellOffset = (int)unit.FloatingHealthBarPosition.X + SummonerSpellXAdjustment(unit) + summonerSpell * 88;
+                    var ySummonerSpellOffset = (int)unit.FloatingHealthBarPosition.Y + SummonerSpellYAdjustment(unit);
+                    var summonerSpellCooldown = GetUnitSummonerSpellFixedName(unit, summonerSpell) + ": " + GetUnitSummonerSpellCooldown(unit, summonerSpell);
+
+                    Render.Text(xSummonerSpellOffset, ySummonerSpellOffset, Color.White, summonerSpellCooldown);
+                }
             }
         }
     }
 }
+
+
+
+
+
+
+
