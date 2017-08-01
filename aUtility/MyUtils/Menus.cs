@@ -147,7 +147,7 @@
 
                 MenuClass.Menu.Add(new MenuSeperator("separator", "Quick Toggles"));
 
-                MenuClass.Menu.Add(new MenuBool("ganktracker", "Gank Tracker"));
+                //MenuClass.Menu.Add(new MenuBool("ganktracker", "Gank Tracker"));
 
                 MenuClass.Menu.Add(new MenuBool("wardtracker", "Wards Tracker"));
                 //   MenuClass.Menu.Add(new MenuBool("trinket", "Buy Blue Trinket"));
